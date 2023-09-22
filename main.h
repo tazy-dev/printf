@@ -43,6 +43,12 @@ int print_string(va_list);
 /*print_functions_radix.c file*/
 int print_int(va_list);
 int print_bin(va_list);
+int print_oct(va_list);
+int print_hex(va_list);
+int print_HEX(va_list);
+
+/*print_functions_simple.c file*/
+int print_unsigned(va_list);
 
 /*utils.c file*/
 

@@ -1,4 +1,7 @@
 #include "main.h"
+#include "print_functions_radix.c"
+#include "print_functions_simple.c"
+#include "print_functions.c"
 
 /**
  * function_pointer - get the function corresponfing to the
@@ -17,6 +20,10 @@ int (*function_pointer(char s))(va_list)
 		{'d', print_int},
 		{'i', print_int},
 		{'b', print_bin},
+		{'o', print_oct},
+		{'x', print_hex},
+		{'X', print_HEX},
+		{'u', print_unsigned},
 		{' ', NULL}};
 
 	while (specifier_list[index].specifier != ' ')
