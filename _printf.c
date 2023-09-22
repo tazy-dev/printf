@@ -1,6 +1,4 @@
 #include "main.h"
-#include "_buffer.c"
-#include "util.c"
 
 /**
  * _printf - Custom Printf function
@@ -42,6 +40,7 @@ int _printf(const char *format, ...)
 			result_len += sprcifier_function(*p, ap);
 
 	}
+	_putChar(BUFFER_FLUSH);
 	va_end(ap);
 	return (result_len);
 }
