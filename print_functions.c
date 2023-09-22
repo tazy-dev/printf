@@ -74,3 +74,26 @@ int print_str_special(va_list ap)
 	return (len);
 }
 
+/**
+ *print_address - Print address of a variable  to console
+ *
+ * @ap: Input argument
+ * Return: The length of the string
+ */
+int print_address(va_list ap)
+{
+	unsigned long int addr = va_arg(ap, unsigned long int);
+	char *result;
+
+	if (addr == 0)
+	{
+		return (_putString("(nil)"));
+	}
+
+	result = convert_number(addr, 16, UNSIGNED | LOWERCASE);
+	*--result = 'x';
+	*--result = '0';
+	return (_putString(result));
+
+}
+

@@ -22,6 +22,7 @@ int (*function_pointer(char s))(va_list)
 		{'X', print_HEX},
 		{'u', print_unsigned},
 		{'S', print_str_special},
+		{'p', print_address},
 		{' ', NULL}};
 
 	while (specifier_list[index].specifier != ' ')
