@@ -75,7 +75,7 @@ int print_str_special(va_list ap)
 }
 
 /**
- *print_address - Print address of a variable  to console
+ * print_address - Print address of a variable  to console
  *
  * @ap: Input argument
  * Return: The length of the string
