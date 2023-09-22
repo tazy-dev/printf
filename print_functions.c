@@ -82,10 +82,10 @@ int print_str_special(va_list ap)
  */
 int print_address(va_list ap)
 {
-	unsigned long int addr = va_arg(ap, unsigned long int);
+	unsigned long int addr = (unsigned long int) va_arg(ap, void *);
 	char *result;
 
-	if (!addr)
+	if (addr == 0)
 	{
 		return (_putString("(nil)"));
 	}
