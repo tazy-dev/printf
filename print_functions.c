@@ -36,8 +36,8 @@ int print_percentage(va_list ap, str_fmt *str)
  */
 int print_string(va_list ap, str_fmt *str)
 {
-	(void)str;
 	char *s = va_arg(ap, char *);
+	(void)str;
 
 	if ((int)(!s))
 	{
