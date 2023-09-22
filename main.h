@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <limits.h>
 
+#define LOWERCASE 1
+#define UNSIGNED 2
 
 /**
  * struct specifier - Different Printf Specifier
@@ -38,8 +40,12 @@ int print_char(va_list);
 int print_percentage(va_list);
 int print_string(va_list);
 
+/*print_functions_radix.c file*/
+int print_int(va_list);
 
 /*utils.c file*/
+
+char *convert_number(int, int, int);
 int (*function_pointer(char))(va_list);
 int sprcifier_function(char, va_list);
 
