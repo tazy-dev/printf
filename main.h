@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <limits.h>
 
+#define BUFFER_SIZE 1024
+#define BUFFER_FLUSH -1
 #define LOWERCASE 1
 #define UNSIGNED 2
 
