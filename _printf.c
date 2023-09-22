@@ -1,4 +1,6 @@
 #include "main.h"
+#include "_buffer.c"
+#include "util.c"
 
 /**
  * _printf - Custom Printf function
