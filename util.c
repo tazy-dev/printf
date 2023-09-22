@@ -1,7 +1,4 @@
 #include "main.h"
-#include "print_functions_radix.c"
-#include "print_functions_simple.c"
-#include "print_functions.c"
 
 /**
  * function_pointer - get the function corresponfing to the
