@@ -27,6 +27,15 @@ int _putString(char *str)
 
 int _putChar(char c)
 {
-	write(1, &c, 1);
+	static int i;
+	static char buffer[BUFFER_SIZE];
+
+	if (c == BUFFER_FLUSH || i >= BUFFER_SIZE)
+	{
+		write(1, buffer, i);
+		i = 0;
+	}
+	if (c != BUFFER_FLUSH)
+		buffer[i++] = c;
 	return (1);
 }
