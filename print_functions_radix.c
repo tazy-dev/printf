@@ -9,9 +9,15 @@
  */
 int print_int(va_list ap, str_fmt *str)
 {
-	int num = va_arg(ap, int);
 	char *result;
+	long num;
 
+	if (str->lng)
+		num = va_arg(ap, long);
+	else if (str->sh)
+		num = (short)va_arg(ap, int);
+	else
+		num = (int)va_arg(ap, int);
 	result = convert_number(num, 10, 0);
 	if (str->plus && !(num < 0) && !str->sign)
 		*--result = '+';
@@ -51,21 +57,24 @@ int print_bin(va_list ap, str_fmt *str)
  */
 int print_oct(va_list ap, str_fmt *str)
 {
-	unsigned long num = va_arg(ap, unsigned long);
 	char *result;
+	unsigned long num;
 
+	if (str->lng)
+		num = (unsigned long) va_arg(ap, unsigned long);
+	else if (str->sh)
+		num = (unsigned short) va_arg(ap, unsigned int);
+	else
+		num = (unsigned int) va_arg(ap, unsigned int);
 	if (num == 0)
 	{
 		return (_putChar('0'));
 	}
 	result = convert_number(num, 8, UNSIGNED);
 	if (str->hash)
-	{
 		*--result = '0';
-	}
 	return (_putString(result));
 }
-
 /**
  * print_hex - Print integer as hexa lowe to console
  *
@@ -76,9 +85,15 @@ int print_oct(va_list ap, str_fmt *str)
  */
 int print_hex(va_list ap, str_fmt *str)
 {
-	unsigned long num = va_arg(ap, unsigned long);
 	char *result;
+	unsigned long num;
 
+	if (str->lng)
+		num = (unsigned long) va_arg(ap, unsigned long);
+	else if (str->sh)
+		num = (unsigned short) va_arg(ap, unsigned int);
+	else
+		num = (unsigned int) va_arg(ap, unsigned int);
 	if (num == 0)
 	{
 		return (_putChar('0'));
@@ -102,9 +117,15 @@ int print_hex(va_list ap, str_fmt *str)
  */
 int print_HEX(va_list ap, str_fmt *str)
 {
-
-	unsigned long num = va_arg(ap, unsigned long);
 	char *result;
+	unsigned long num;
+
+	if (str->lng)
+		num = (unsigned long) va_arg(ap, unsigned long);
+	else if (str->sh)
+		num = (unsigned short) va_arg(ap, unsigned int);
+	else
+		num = (unsigned int) va_arg(ap, unsigned int);
 
 	if (num == 0)
 	{

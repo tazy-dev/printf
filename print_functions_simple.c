@@ -9,10 +9,15 @@
  */
 int print_unsigned(va_list ap, str_fmt *str)
 {
-	unsigned int num = va_arg(ap, unsigned int);
+	unsigned long num;
 	char *result;
-	(void)str;
 
+	if (str->lng)
+		num = (unsigned long)va_arg(ap, unsigned long);
+	else if (str->sh)
+		num = (unsigned short)va_arg(ap, unsigned int);
+	else
+		num = (unsigned int)va_arg(ap, unsigned int);
 	result = convert_number(num, 10, UNSIGNED);
 	return (_putString(result));
 }

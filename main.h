@@ -98,8 +98,8 @@ int sprcifier_function(char, va_list, str_fmt *);
 /*format_specifiers.c*/
 void intialize_fmt_str(str_fmt *);
 int parse_flags(char, str_fmt *);
-int print_expression(str_fmt *flags);
-
+int print_expression(const char *, const char *, str_fmt *);
+const char *parse_modifier(const char *, str_fmt *);
 
 #endif
 

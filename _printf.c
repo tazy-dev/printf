@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	const char *p;
+	const char *p, *express;
 	int result_len = 0;
 	str_fmt flags;
 
@@ -31,12 +31,14 @@ int _printf(const char *format, ...)
 			result_len = -1;
 			break;
 		}
+		express = p;
 		p++;
 		intialize_fmt_str(&flags);
 		while (parse_flags(*p, &flags))
 			++p;
+		p = parse_modifier(p, &flags);
 		if (!function_pointer(*p))
-			result_len += print_expression(&flags);
+			result_len += print_expression(express, --p, &flags);
 		else
 			result_len += sprcifier_function(*p, ap, &flags);
 	}

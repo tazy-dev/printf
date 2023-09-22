@@ -49,15 +49,16 @@ int parse_flags(char f, str_fmt *str)
 	}
 	return (found);
 }
-
 /**
  * print_expression - Prints the expression before the specifier when unknown
  *                    specifier is passed to id
+ * @start: The expression start pointer
+ * @end: The expression end pointer
  * @flags: The flags structure.
  *
  * Return: The length of the uknown expression
  */
-int print_expression(str_fmt *flags)
+int print_expression(const char *start, const char *end, str_fmt *flags)
 {
 	int express_len = 0;
 
@@ -71,15 +72,44 @@ int print_expression(str_fmt *flags)
 			express_len += _putString("%#");
 	}
 	else if (flags->plus && !(flags->hash))
-	{
 		express_len += _putString("%+");
-	} else if (flags->space)
-	{
+	else if (flags->space)
 		express_len += _putString("% ");
-	} else
-	{
+	else
 		express_len += _putChar('%');
+	start += express_len;
+	while (start <= end)
+	{
+		if ((*start != 'h') && (*start != 'l'))
+			express_len += _putChar(*start);
+		++start;
 	}
+
 	return (express_len);
+}
+/**
+ * parse_modifier - Determine the length flags
+ *
+ * @m: modufier
+ * @str: The flags stucture
+ *
+ * Return: Increase in address passed if modifier found
+ */
+const char *parse_modifier(const char *m, str_fmt *str)
+{
+	switch (*m)
+	{
+		case 'l':
+			str->lng = 1;
+			++m;
+			break;
+		case 'h':
+			str->sh = 1;
+			++m;
+			break;
+		default:
+			break;
+	}
+	return (m);
 }
 
