@@ -41,6 +41,7 @@ int _putChar(char);
 int print_char(va_list);
 int print_percentage(va_list);
 int print_string(va_list);
+int print_str_special(va_list);
 
 /*print_functions_radix.c file*/
 int print_int(va_list);

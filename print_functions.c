@@ -39,3 +39,38 @@ int print_string(va_list ap)
 	} else
 		return (_putString(str));
 }
+
+/**
+ * print_str_special - Print string along with non-printable as hexa to console
+ *
+ * @ap: Input argument
+ * Return: The length of the string
+ */
+int print_str_special(va_list ap)
+{
+	char *str = va_arg(ap, char *), *non_printable;
+	int len = 0;
+
+
+	for (; *str; str++)
+	{
+		if ((*str > 0 && *str < 32) || *str >= 127)
+		{
+			len += 2;
+			_putChar('\\');
+			_putChar('x');
+			non_printable = convert_number(*str, 16, UNSIGNED);
+			if (non_printable[1])
+				len += _putString(non_printable);
+			else
+			{
+				_putChar('0');
+				_putChar(non_printable[0]);
+				len += 2;
+			}
+		} else
+			len += _putChar(*str);
+	}
+	return (len);
+}
+
