@@ -82,15 +82,15 @@ int print_str_special(va_list ap)
  */
 int print_address(va_list ap)
 {
-	void *addr =  va_arg(ap, void *);
+	unsigned long int addr = va_arg(ap, unsigned long int);
 	char *result;
 
-	if (!addr)
+	if (addr == 0)
 	{
 		return (_putString("(nil)"));
 	}
 
-	result = convert_number((long int)addr, 16, UNSIGNED | LOWERCASE);
+	result = convert_number(addr, 16, UNSIGNED | LOWERCASE);
 	*--result = 'x';
 	*--result = '0';
 	return (_putString(result));
