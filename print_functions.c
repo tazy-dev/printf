@@ -85,7 +85,7 @@ int print_address(va_list ap)
 	unsigned long int addr = va_arg(ap, unsigned long int);
 	char *result;
 
-	if (addr == 0)
+	if (!addr)
 	{
 		return (_putString("(nil)"));
 	}
