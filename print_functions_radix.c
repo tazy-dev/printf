@@ -54,6 +54,10 @@ int print_oct(va_list ap, str_fmt *str)
 	unsigned long num = va_arg(ap, unsigned long);
 	char *result;
 
+	if (num == 0)
+	{
+		return (_putChar('0'));
+	}
 	result = convert_number(num, 8, UNSIGNED);
 	if (str->hash)
 	{
@@ -75,6 +79,10 @@ int print_hex(va_list ap, str_fmt *str)
 	unsigned long num = va_arg(ap, unsigned long);
 	char *result;
 
+	if (num == 0)
+	{
+		return (_putChar('0'));
+	}
 	result = convert_number(num, 16, UNSIGNED | LOWERCASE);
 	if (str->hash)
 	{
@@ -98,6 +106,10 @@ int print_HEX(va_list ap, str_fmt *str)
 	unsigned long num = va_arg(ap, unsigned long);
 	char *result;
 
+	if (num == 0)
+	{
+		return (_putChar('0'));
+	}
 	result = convert_number(num, 16, UNSIGNED | !LOWERCASE);
 	if (str->hash)
 	{
