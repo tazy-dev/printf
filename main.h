@@ -42,6 +42,7 @@ int print_string(va_list);
 
 /*print_functions_radix.c file*/
 int print_int(va_list);
+int print_bin(va_list);
 
 /*utils.c file*/
 
