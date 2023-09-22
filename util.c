@@ -7,7 +7,7 @@
  * @s : specifier
  * Return: A pointer to the coresponding function
  */
-int (*function_pointer(char s))(va_list)
+int (*function_pointer(char s))(va_list, str_fmt *)
 {
 	int index = 0;
 	fmt_spec specifier_list[] = {
@@ -28,9 +28,7 @@ int (*function_pointer(char s))(va_list)
 	while (specifier_list[index].specifier != ' ')
 	{
 		if (s == specifier_list[index].specifier)
-		{
 			return (specifier_list[index].function);
-		}
 		index++;
 	}
 	return (NULL);
@@ -38,17 +36,17 @@ int (*function_pointer(char s))(va_list)
 /**
  * sprcifier_function - the function corresponfing to the
  *                    specifier
- *
  * @s : specifier
+ * @str : specifier structure
  * @ap : input argument
  * Return: The length of the printed result
  */
-int sprcifier_function(char s, va_list ap)
+int sprcifier_function(char s, va_list ap, str_fmt *str)
 {
-	int (*func)(va_list) = function_pointer(s);
+	int (*func)(va_list, str_fmt *) = function_pointer(s);
 
 	if (func)
-		return (func(ap));
+		return (func(ap, str));
 	return (0);
 }
 /**
@@ -60,12 +58,12 @@ int sprcifier_function(char s, va_list ap)
  *		or uppercase (hexa)
  * Return: pointer to the resulting string
  *
-*/
-char *convert_number(int num, int base, int check)
+ */
+char *convert_number(long int num, int base, int check)
 {
 	static char *conv_table;
 	static char res_buf[64];
-	unsigned int n = num;
+	unsigned long int n = num;
 	char sign = 0;
 	char *ptr;
 
@@ -87,3 +85,4 @@ char *convert_number(int num, int base, int check)
 	}
 	return (ptr);
 }
+

@@ -12,6 +12,7 @@ int _printf(const char *format, ...)
 	va_list ap;
 	const char *p;
 	int result_len = 0;
+	str_fmt flags;
 
 	va_start(ap, format);
 	if (!format || (format[0] == '%' && !format[1]))
@@ -30,19 +31,16 @@ int _printf(const char *format, ...)
 			result_len = -1;
 			break;
 		}
-		++p;
-		/*in case the given specifier is not defined*/
+		p++;
+		intialize_fmt_str(&flags);
+		while (parse_flags(*p, &flags))
+			++p;
 		if (!function_pointer(*p))
-		{
-			result_len += _putChar('%');
-			result_len += _putChar(*p);
-		} else
-			result_len += sprcifier_function(*p, ap);
-
+			result_len += print_expression(&flags);
+		else
+			result_len += sprcifier_function(*p, ap, &flags);
 	}
 	_putChar(BUFFER_FLUSH);
 	va_end(ap);
 	return (result_len);
 }
-
-
