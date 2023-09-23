@@ -36,6 +36,7 @@ int _printf(const char *format, ...)
 		intialize_fmt_str(&flags);
 		while (parse_flags(*p, &flags))
 			++p;
+		p = parse_width(p, ap, &flags);
 		p = parse_modifier(p, &flags);
 		if (!function_pointer(*p))
 			result_len += print_expression(express, --p, &flags);

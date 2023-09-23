@@ -50,44 +50,6 @@ int parse_flags(char f, str_fmt *str)
 	return (found);
 }
 /**
- * print_expression - Prints the expression before the specifier when unknown
- *                    specifier is passed to id
- * @start: The expression start pointer
- * @end: The expression end pointer
- * @flags: The flags structure.
- *
- * Return: The length of the uknown expression
- */
-int print_expression(const char *start, const char *end, str_fmt *flags)
-{
-	int express_len = 0;
-
-	if (flags->plus && flags->hash)
-		express_len += _putString("%#+");
-	else if (!(flags->plus) && flags->hash)
-	{
-		if (flags->space)
-			express_len += _putString("%# ");
-		else
-			express_len += _putString("%#");
-	}
-	else if (flags->plus && !(flags->hash))
-		express_len += _putString("%+");
-	else if (flags->space)
-		express_len += _putString("% ");
-	else
-		express_len += _putChar('%');
-	start += express_len;
-	while (start <= end)
-	{
-		if ((*start != 'h') && (*start != 'l'))
-			express_len += _putChar(*start);
-		++start;
-	}
-
-	return (express_len);
-}
-/**
  * parse_modifier - Determine the length flags
  *
  * @m: modufier
@@ -112,4 +74,32 @@ const char *parse_modifier(const char *m, str_fmt *str)
 	}
 	return (m);
 }
+/**
+ * parse_width - Update witdth in flags structure
+ *
+ * @wid : pointer to the width value or *
+ * @ap : argument list
+ * @str : The flags stucture
+ *
+ * Return: pointer to the next flag or specifier
+ */
+const char *parse_width(const char *wid, va_list ap, str_fmt *str)
+{
+	unsigned int width;
 
+	if (*wid == '*')
+	{
+		width = va_arg(ap, int);
+		wid++;
+	} else
+	{
+		while (_isdigit(*wid))
+		{
+			width = width * 10 + (*wid++ - '0');
+		}
+
+
+	}
+	str->width = width;
+	return (wid);
+}

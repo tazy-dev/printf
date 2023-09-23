@@ -88,18 +88,19 @@ int print_HEX(va_list, str_fmt *);
 
 /*print_functions_simple.c file*/
 int print_unsigned(va_list, str_fmt *);
+int print_expression(const char *, const char *, str_fmt *);
 
 /*utils.c file*/
-
 char *convert_number(long int, int, int);
 int (*function_pointer(char))(va_list, str_fmt *);
 int sprcifier_function(char, va_list, str_fmt *);
+int _isdigit(int);
+int _strlen(char *);
+
 
 /*format_specifiers.c*/
 void intialize_fmt_str(str_fmt *);
 int parse_flags(char, str_fmt *);
-int print_expression(const char *, const char *, str_fmt *);
 const char *parse_modifier(const char *, str_fmt *);
-
+const char *parse_width(const char *, va_list, str_fmt *);
 #endif
-

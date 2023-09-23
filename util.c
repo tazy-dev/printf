@@ -85,4 +85,31 @@ char *convert_number(long int num, int base, int check)
 	}
 	return (ptr);
 }
+/**
+ * _isdigit - checks if it is an integer
+ *
+ * @num : Number to be checked
+ * Return: 1 if digit , 0 other
+ */
+int _isdigit(int num)
+{
+	return (num >= '0' && num <= '9');
+}
 
+/**
+ * _strlen - Calc the length of a string
+ *
+ * @str: Input String
+ * Return: the length of a string
+ */
+int _strlen(char *str)
+{
+	int len = 0;
+
+	while (*str++)
+	{
+		len++;
+	}
+
+	return (len);
+}
